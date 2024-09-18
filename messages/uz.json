@@ -1,0 +1,26 @@
+{
+    "NavbarLinks": {
+        "burger": "Burgerlar",
+        "snack": "Gazaklar",
+        "hotDogs": "Hot-doglar",
+        "combo": "Kombo",
+        "shawarma": "Shaurma",
+        "pizza": "Pitsa",
+        "wok": "Vok",
+        "desserts": "Shirinliklar",
+        "sauces": "Sauslar",
+        "homeTitle": "Bosh sahifa"
+    },
+    "HomePage": {
+        "title": "Sizning Ovqatingiz",
+        "description": "Faqat eng ko'p",
+        "description_sec": "suvli burgerlar!",
+        "delivery": "Bepul yetkazib berish",
+        "delivery_price": "83,000 uzs",
+        "basket": "Savat",
+        "created": "© Sizning Ovqatingiz, 2022",
+        "design": "Dizayn: Anastasia Ilina",
+        "number": "Buyurtma raqami",
+        "social": "Biz ijtimoiy tarmoqlardamiz"
+    }
+}

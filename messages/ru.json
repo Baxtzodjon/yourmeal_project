@@ -1,0 +1,26 @@
+{
+    "NavbarLinks": {
+        "burger": "Бургеры",
+        "snack": "Закуски",
+        "hotDogs": "Хот-доги",
+        "combo": "Комбо",
+        "shawarma": "Шаурма",
+        "pizza": "Пицца",
+        "wok": "Вок",
+        "desserts": "Десерты",
+        "sauces": "Соусы",
+        "homeTitle": "Главная страница"
+    },
+    "HomePage": {
+        "title": "Твоя Еда",
+        "description": "Только самые",
+        "description_sec": "сочные бургеры!",
+        "delivery": "Бесплатная доставка от",
+        "delivery_price": "599₽",
+        "basket": "Корзина",
+        "created": "© Твоя Еда, 2022",
+        "design": "Дизайн: Anastasia Ilina",
+        "number": "Номер для заказа",
+        "social": "Мы в соцсетях"
+    }
+}

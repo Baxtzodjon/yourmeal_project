@@ -1,0 +1,26 @@
+{
+    "NavbarLinks": {
+        "burger": "Burgers",
+        "snack": "Snacks",
+        "hotDogs": "Hot-dogs",
+        "combo": "Combo",
+        "shawarma": "Shawarma",
+        "pizza": "Pizza",
+        "wok": "Wok",
+        "desserts": "Desserts",
+        "sauces": "Sauces",
+        "homeTitle": "Home page"
+    },
+    "HomePage": {
+        "title": "Your Meal",
+        "description": "Only the most",
+        "description_sec": "juicy burgers!",
+        "delivery": "Free delivery from",
+        "delivery_price": "6$",
+        "basket": "Basket",
+        "created": "© YouMeal, 2022",
+        "design": "Design: Anastasia Ilina",
+        "number": "Order number",
+        "social": "We are on social networks"
+    }
+}
