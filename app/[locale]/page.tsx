@@ -1,7 +1,13 @@
+import Cart from "@/components/Cart";
+import Counter from "@/components/Counter";
+import Modal from "@/components/Modal";
+import Popup from "@/components/Popup";
 import { useTranslations } from "next-intl";
 import { getMessages } from "next-intl/server";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export async function generateMetadata({
   params: { locale },
@@ -20,48 +26,49 @@ export default function Home() {
 
   const t = useTranslations("HomePage");
   const mealtext = useTranslations("NavbarLinks");
+  const brg_names = useTranslations("BurgerNames");
 
   const card_burgers = [
     {
       "id": Math.random(),
       "image": "/images/hamburger_fir.png",
       "price": "689₽",
-      "name": "Мясная бомба",
+      "name": brg_names("burger_fir"),
       "weight": "520г"
     },
     {
       "id": Math.random(),
       "image": "/images/hamburger_sec.png",
       "price": "550₽",
-      "name": "Супер сырный",
+      "name": brg_names("burger_sec"),
       "weight": "512г"
     },
     {
       "id": Math.random(),
       "image": "/images/hamburger_third.png",
       "price": "639₽",
-      "name": "Сытный",
+      "name": brg_names("burger_thr"),
       "weight": "580г"
     },
     {
       "id": Math.random(),
       "image": "/images/hamburger_fourth.png",
       "price": "480₽",
-      "name": "Тяжелый удар",
+      "name": brg_names("burger_foth"),
       "weight": "470г"
     },
     {
       "id": Math.random(),
       "image": "/images/hamburger_fifth.png",
       "price": "450₽",
-      "name": "Вечная классика",
+      "name": brg_names("burger_fif"),
       "weight": "450г"
     },
     {
       "id": Math.random(),
       "image": "/images/hamburger_sixth.png",
       "price": "560₽",
-      "name": "Итальянский",
+      "name": brg_names("burger_sixt"),
       "weight": "510г"
     }
   ];
@@ -92,7 +99,6 @@ export default function Home() {
 
   return (
     <>
-
       <div>
 
         <div className="w-[1200px] mx-auto">
@@ -146,19 +152,7 @@ export default function Home() {
 
                         </div>
 
-                        <div className="w-[84px] h-[40px] bg-[#F2F2F3] rounded-[12px] px-[12px] py-[9px]">
-
-                          <div className="flex items-center justify-between">
-
-                            <span className="text-[#000000] text-[16px] leading-[22px] font-normal cursor-pointer">-</span>
-
-                            <small className="text-[#000000] text-[16px] leading-[22px] font-normal">1</small>
-
-                            <span className="text-[#000000] text-[16px] leading-[22px] font-normal cursor-pointer">+</span>
-
-                          </div>
-
-                        </div>
+                        <Counter />
 
                       </div>
 
@@ -173,7 +167,7 @@ export default function Home() {
 
                 <div className="flex items-center justify-between pt-4 pb-6">
 
-                  <h5 className="text-[#000000] text-[16px] leading-[21px] font-normal">Итого</h5>
+                  <h5 className="text-[#000000] text-[16px] leading-[21px] font-normal">{t("total")}</h5>
 
                   <span className="text-[#000000] text-[16px] leading-[21px] font-normal">1279₽</span>
 
@@ -181,13 +175,17 @@ export default function Home() {
 
                 <div className="flex flex-col gap-2">
 
-                  <button className="w-[268px] h-[40px] bg-[#FF7020] rounded-[12px] text-[#FFFFFF] text-[16px] leading-[16px] font-normal">Оформить заказ</button>
+                  <Popup>
+
+                    <button className="w-[268px] h-[40px] bg-[#FF7020] rounded-[12px] text-[#FFFFFF] text-[16px] leading-[16px] font-normal">{t("order")}</button>
+
+                  </Popup>
 
                   <div className="flex items-center gap-2">
 
                     <Image src="/icons/delivery.png" alt="" width="24" height="24" />
 
-                    <small className="text-[#000000] text-[12px] leading-[16px] font-normal">Бесплатная доставка</small>
+                    <small className="text-[#000000] text-[12px] leading-[16px] font-normal">{t("delivery_sec")}</small>
 
                   </div>
 
@@ -222,7 +220,11 @@ export default function Home() {
 
                         <span className="text-[#B1B1B1] text-[16px] leading-[21px] font-smeibold">{item.weight}</span>
 
-                        <button className="w-full h-[40px] bg-[#F2F2F3] rounded-[12px] text-[#000000] text-[16px] leading-[16px] font-normal">Добавить</button>
+                        <Modal>
+
+                          <button className="w-full h-[40px] bg-[#F2F2F3] rounded-[12px] text-[#000000] text-[16px] leading-[16px] font-normal">{t("add_btn")}</button>
+
+                        </Modal>
 
                       </div>
 

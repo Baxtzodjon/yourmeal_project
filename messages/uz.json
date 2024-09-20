@@ -21,6 +21,28 @@
         "created": "© Sizning Ovqatingiz, 2022",
         "design": "Dizayn: Anastasia Ilina",
         "number": "Buyurtma raqami",
-        "social": "Biz ijtimoiy tarmoqlardamiz"
+        "social": "Biz ijtimoiy tarmoqlardamiz",
+        "total": "Jami",
+        "order": "Buyurtma bering",
+        "delivery_sec": "Bepul yetkazib berish",
+        "add_btn": "Qo'shish"
+    },
+    "BurgerNames": {
+        "burger_fir": "Go'shtli bomba",
+        "burger_sec": "Super shirin",
+        "burger_thr": "Qoniqarli",
+        "burger_foth": "Qattiq zarba",
+        "burger_fif": "Abadiy klassik",
+        "burger_sixt": "Italyancha"
+    },
+    "Popup": {
+        "delivery_popup": "Yetkazib berish",
+        "inp_name": "Sizning ismingiz",
+        "inp_phone": "Telefon",
+        "inp_rdo": "Olib ketish",
+        "inp_address": "Ko'cha, uy, kvartira",
+        "floor": "Qavat",
+        "intercom": "Interkom",
+        "design_btn": "Buyurtma bering"
     }
 }

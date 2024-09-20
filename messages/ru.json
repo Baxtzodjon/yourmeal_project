@@ -21,6 +21,28 @@
         "created": "© Твоя Еда, 2022",
         "design": "Дизайн: Anastasia Ilina",
         "number": "Номер для заказа",
-        "social": "Мы в соцсетях"
+        "social": "Мы в соцсетях",
+        "total": "Итого",
+        "order": "Оформить заказ",
+        "delivery_sec": "Бесплатная доставка",
+        "add_btn": "Добавить"
+    },
+    "BurgerNames": {
+        "burger_fir": "Мясная бомба",
+        "burger_sec": "Супер сырный",
+        "burger_thr": "Сытный",
+        "burger_foth": "Тяжелый удар",
+        "burger_fif": "Вечная классика",
+        "burger_sixt": "Итальянский"
+    },
+    "Popup": {
+        "delivery_popup": "Доставка",
+        "inp_name": "Ваше имя",
+        "inp_phone": "Телефон",
+        "inp_rdo": "Самовывоз",
+        "inp_address": "Улица, дом, квартира",
+        "floor": "Этаж",
+        "intercom": "Домофон",
+        "design_btn": "Оформить"
     }
 }

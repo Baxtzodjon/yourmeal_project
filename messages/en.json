@@ -21,6 +21,28 @@
         "created": "© YouMeal, 2022",
         "design": "Design: Anastasia Ilina",
         "number": "Order number",
-        "social": "We are on social networks"
+        "social": "We are on social networks",
+        "total": "Total",
+        "order": "Place an order",
+        "delivery_sec": "Free delivery",
+        "add_btn": "Add"
+    },
+    "BurgerNames": {
+        "burger_fir": "Meat bomb",
+        "burger_sec": "Super cheesy",
+        "burger_thr": "Satisfying",
+        "burger_foth": "Heavy blow",
+        "burger_fif": "Timeless classic",
+        "burger_sixt": "Italian"
+    },
+    "Popup": {
+        "delivery_popup": "Delivery",
+        "inp_name": "Your name",
+        "inp_phone": "Telephone",
+        "inp_rdo": "Pickup",
+        "inp_address": "Street, house, apartment",
+        "floor": "Floor",
+        "intercom": "Intercom",
+        "design_btn": "Design"
     }
 }
