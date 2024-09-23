@@ -44,6 +44,8 @@ const Navbar = ({ locale }: { locale: string }) => {
 
                         </div>
 
+                        <Link href="/admin/dashboard/menu" target="_blank" className="absolute top-5 right-[100px]"><button className="w-[150px] h-[40px] bg-[#FF7020] rounded-[12px] text-[#FFFFFF] text-[16px] leading-[16px] font-normal truncate">Admin Dashboard</button></Link>
+
                     </div>
 
                     <div className="flex items-center justify-center gap-[58px]">

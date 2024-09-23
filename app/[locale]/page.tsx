@@ -1,7 +1,10 @@
 import Cart from "@/components/Cart";
 import Counter from "@/components/Counter";
+import Food from "@/components/Food";
+import FoodItem from "@/components/FoodItem";
 import Modal from "@/components/Modal";
 import Popup from "@/components/Popup";
+import Sidebar from "@/components/Sidebar";
 import { useTranslations } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Head from "next/head";
@@ -23,6 +26,24 @@ export async function generateMetadata({
 };
 
 export default function Home() {
+
+  // const res = await fetch('http://localhost:3000/api/menu')
+  // console.log(res);
+
+  // const data = await res.json()
+
+  fetch('http://localhost:3000/api/menu')
+    .then(res => {
+      console.log(res);
+      return res.json();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Ошибка:', error);
+    })
+
 
   const t = useTranslations("HomePage");
   const mealtext = useTranslations("NavbarLinks");
@@ -199,39 +220,51 @@ export default function Home() {
 
               <h3 className="text-[#000000] text-[40px] leading-[48px] font-semibold pb-6">{mealtext("burger")}</h3>
 
-              <div className="grid grid-cols-3 gap-[30px]">
+              <div className="flex flex-col gap-[30px]">
 
-                {card_burgers.map((item, index) => (
-                  <div className="w-[280px] h-[400px] bg-[#FFFFFF] rounded-[18px] p-3" key={index}>
+                <div className="grid grid-cols-3 gap-[30px]">
 
-                    <Image src={item.image} alt="" width="276" height="220" className="rounded-[12px]" />
+                  {card_burgers.map((item, index) => (
+                    <div className="w-[280px] h-[400px] bg-[#FFFFFF] rounded-[18px] p-3" key={index}>
 
-                    <div className="flex flex-col gap-[29px] mt-4">
+                      <Image src={item.image} alt="" width="276" height="220" className="rounded-[12px]" />
 
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-[29px] mt-4">
 
-                        <h5 className="text-[#000000] text-[24px] leading-[24px] font-semibold">{item.price}</h5>
+                        <div className="flex flex-col gap-2">
 
-                        <span className="text-[#000000] text-[16px] leading-[21px] font-normal">{item.name}</span>
+                          <h5 className="text-[#000000] text-[24px] leading-[24px] font-semibold">{item.price}</h5>
 
-                      </div>
+                          <span className="text-[#000000] text-[16px] leading-[21px] font-normal">{item.name}</span>
 
-                      <div className="flex flex-col gap-2">
+                        </div>
 
-                        <span className="text-[#B1B1B1] text-[16px] leading-[21px] font-smeibold">{item.weight}</span>
+                        <div className="flex flex-col gap-2">
 
-                        <Modal>
+                          <span className="text-[#B1B1B1] text-[16px] leading-[21px] font-smeibold">{item.weight}</span>
 
-                          <button className="w-full h-[40px] bg-[#F2F2F3] rounded-[12px] text-[#000000] text-[16px] leading-[16px] font-normal">{t("add_btn")}</button>
+                          <Modal>
 
-                        </Modal>
+                            <button className="w-full h-[40px] bg-[#F2F2F3] rounded-[12px] text-[#000000] text-[16px] leading-[16px] font-normal">{t("add_btn")}</button>
+
+                          </Modal>
+
+                        </div>
 
                       </div>
 
                     </div>
+                  ))}
 
-                  </div>
-                ))}
+                </div>
+
+                <div className="flex flex-wrap">
+
+                  <FoodItem />
+
+                  {/* <Food /> */}
+
+                </div>
 
               </div>
 
