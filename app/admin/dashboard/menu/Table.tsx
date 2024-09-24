@@ -1,46 +1,74 @@
 "use client"
+import Modal from "@/components/Modal";
 import Link from "next/link"
-import React, { useState } from "react"
+import { useState } from "react";
 
-interface TableProps { }
+const Table = async () => {
 
-const Table: React.FC<TableProps> = () => {
+    const [language, setLanguage] = useState('en')
+    const languages = ['en', 'ru', 'uz']
+
+    const changeLanguage = (lang: any) => {
+        if (language.includes(lang)) {
+            setLanguage(lang)
+        }
+    }
+
+    const res = await fetch('http://localhost:3000/api/menu')
+    console.log(res);
+
+    const cards_burger = await res.json()
+
     return (
         <>
 
             <div style={{ display: 'flex', flexDirection: 'column' }}>
 
-                <h1 style={{ color: '#000000', fontSize: '32px', fontWeight: '600' }}>Table Menu</h1>
+                <h1 style={{ color: '#000000', fontSize: '32px', fontWeight: '600' }}>Card Menu</h1>
 
-                {/* <table style={{ width: '1000px', height: '200px', border: '2px solid #FFAB08', padding: '10px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '30px' }}>
 
-                    <tr>
+                    {cards_burger.data.map((item: any) => (
 
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Weight</th>
-                        <th>Price</th>
-                        <th>Composition</th>
-                        <th>Description</th>
-                        <th>Change</th>
-                        <th>Delete</th>
+                        <div style={{ width: '280px', height: 'fit-content', backgroundColor: '#FFAB08', borderRadius: '18px', padding: '12px' }} key={item?._id}>
 
-                    </tr>
+                            <img src={`${item?.images}`} alt="" style={{ width: '276px', height: '220px', borderRadius: '12px', objectFit: 'cover' }} />
 
-                    <tr>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '29px' }}>
 
-                        <td><img src="/images/hamburger_fir.png" alt="" style={{ width: '60px', height: '60px' }} /></td>
-                        <td>Hot Burger</td>
-                        <td>500 g</td>
-                        <td>12$</td>
-                        <td>Lorem ipsum dolor sit amet.</td>
-                        <td>Lorem ipsum dolor sit amet.</td>
-                        <td><button style={{ width: '60px', height: '30px', backgroundColor: '#FFAB08', borderRadius: '6px', padding: '5px', border: 'none', color: '#ffffff', fontSize: '14px', fontWeight: '400', cursor: 'pointer' }}>Change</button></td>
-                        <td><button style={{ width: '60px', height: '30px', backgroundColor: '#FFAB08', borderRadius: '6px', padding: '5px', border: 'none', color: '#ffffff', fontSize: '14px', fontWeight: '400', cursor: 'pointer' }}>Delete</button></td>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
 
-                    </tr>
+                                    <h5 style={{ color: '#000000', fontSize: '24px', lineHeight: '24px', fontWeight: '600' }}>{`${Number(item?.price) + '$'}`}</h5>
 
-                </table> */}
+                                    <span style={{ color: '#000000', fontSize: '16px', lineHeight: '21px', fontWeight: '400' }}>{item?.titles[language]}</span>
+
+                                </div>
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+
+                                    <span style={{ color: '#B1B1B1', fontSize: '16px', lineHeight: '21px', fontWeight: '600' }}>{item?.weight}</span>
+
+                                    <p style={{ color: '#B1B1B1', fontSize: '16px', lineHeight: '21px', fontWeight: '400' }}>{String(item.description?.[language])}</p>
+
+                                    <p style={{ color: '#B1B1B1', fontSize: '16px', lineHeight: '21px', fontWeight: '400' }}>{item?.composition}</p>
+
+                                    <div style={{ display: 'flex', gap: '8px' }}>
+
+                                        <button style={{ width: '140px', height: '40px', backgroundColor: '#F2F2F3', border: 'none', borderRadius: '12px', color: '#000000', fontSize: '16px', lineHeight: '21px', fontWeight: '400', cursor: 'pointer' }}>Добавить</button>
+
+                                        <button style={{ width: '140px', height: '40px', backgroundColor: '#FF7020', border: 'none', borderRadius: '12px', color: '#000000', fontSize: '16px', lineHeight: '21px', fontWeight: '400', cursor: 'pointer' }}>Delete</button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    ))}
+
+                </div>
 
             </div>
 

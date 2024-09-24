@@ -9,7 +9,7 @@ const page: React.FC<pageProps> = () => {
     return (
         <>
 
-            <div style={{ display: 'flex', gap: '30px' }}>
+            <div>
 
                 <div style={{ position: 'absolute', right: '15px' }}>
 
@@ -21,9 +21,11 @@ const page: React.FC<pageProps> = () => {
 
                 </div>
 
-                <Sidebar />
+                {/* <div>
 
-                <Table />
+                    <Table />
+
+                </div> */}
 
             </div>
 

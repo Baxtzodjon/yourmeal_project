@@ -97,7 +97,9 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
 
                                     <label htmlFor="price" style={{ color: '#ffffff', fontSize: '18px', fontWeight: '500' }}>Price</label>
 
-                                    <input type="text" name="price" id="price" placeholder="$0.00" style={{ width: '350px', height: '20px', borderRadius: '6px', padding: '5px', outline: 'none', border: 'none' }} />
+                                    <input type="number" name="price" id="price" placeholder="$0.00" style={{ width: '350px', height: '20px', borderRadius: '6px', padding: '5px', outline: 'none', border: 'none' }} />
+
+                                    {/* <input type="text" name="price" id="price" placeholder="$0.00" style={{ width: '350px', height: '20px', borderRadius: '6px', padding: '5px', outline: 'none', border: 'none' }} /> */}
 
                                 </div>
 
@@ -119,13 +121,13 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
 
                                 <div>
 
-                                    <button style={{ width: '350px', height: '40px', backgroundColor: '#F2F2F3', borderRadius: '6px', padding: '5px', border: 'none', color: '#808080', fontSize: '16px', fontWeight: '400', cursor: 'pointer' }} onClick={() => setIsOpenForm(false)}>Exit</button>
+                                    <button style={{ width: '360px', height: '40px', backgroundColor: '#F2F2F3', borderRadius: '6px', padding: '5px', border: 'none', color: '#808080', fontSize: '16px', fontWeight: '400', cursor: 'pointer' }} onClick={() => setIsOpenForm(false)}>Exit</button>
 
                                 </div>
 
                                 <div>
 
-                                    <Link href="/"><button type="submit" style={{ width: '350px', height: '40px', backgroundColor: '#FFAB08', borderRadius: '6px', padding: '5px', border: 'none', color: '#ffffff', fontSize: '16px', fontWeight: '400', cursor: 'pointer' }}>Submit</button></Link>
+                                    <button type="submit" style={{ width: '360px', height: '40px', backgroundColor: '#FFAB08', borderRadius: '6px', padding: '5px', border: 'none', color: '#ffffff', fontSize: '16px', fontWeight: '400', cursor: 'pointer' }}>Submit</button>
 
                                 </div>
 
