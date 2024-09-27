@@ -15,7 +15,7 @@ import Image from "next/image"
 //     composition: 'Flour'
 // }
 
-const FoodItem = async () => {
+const FoodItem = () => {
     // const [isMeal, setMeal] = useState([])
 
     /* useEffect(() => {
@@ -27,29 +27,30 @@ const FoodItem = async () => {
 
     const [language, setLanguage] = useState('en')
     const languages = ['en', 'ru', 'uz']
+    const [card_burgers_sec, setcard_burgers_sec] = useState([]);
 
-    const changeLanguage = (lang:any) => {
+    const changeLanguage = (lang: any) => {
         if (language.includes(lang)) {
             setLanguage(lang)
         }
     }
 
-    const res = await fetch('http://localhost:3000/api/menu')
-    console.log(res);
+    // const res = await fetch('http://localhost:3000/api/menu')
+    // console.log(res);
 
-    const card_burgers_sec = await res.json()
+    // const card_burgers_sec = await res.json()
 
-    // fetch('http://localhost:3000/api/menu')
-    //     .then(res => {
-    //         console.log(res);
-    //         return res.json();
-    //     })
-    //     .then(data => {
-    //         console.log(data);
-    //     })
-    //     .catch(error => {
-    //         console.error('Ошибка:', error);
-    //     })
+    useEffect(() => {
+        fetch('http://localhost:3000/api/menu')
+            .then((res) => res.json())
+            .then((data) => {
+                setcard_burgers_sec(data.data)
+                console.log(data.data);
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            })
+    }, [])
 
     return (
         <>
@@ -58,7 +59,7 @@ const FoodItem = async () => {
                 <Food item={item} />
             })} */}
 
-            {card_burgers_sec.data.map((item:any) => (
+            {card_burgers_sec.map((item: any) => (
 
                 <div className="w-[280px] h-fit-content bg-[#FFFFFF] rounded-[18px] p-3" key={item?._id}>
 

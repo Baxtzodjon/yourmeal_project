@@ -32,25 +32,25 @@ const Table = async () => {
 
                         <div style={{ width: '280px', height: 'fit-content', backgroundColor: '#FFAB08', borderRadius: '18px', padding: '12px' }} key={item?._id}>
 
-                            <img src={`${item?.images}`} alt="" style={{ width: '276px', height: '220px', borderRadius: '12px', objectFit: 'cover' }} />
+                            <img src={`${item?.images}`} alt="" style={{ width: '276px', height: '220px', borderRadius: '12px', objectFit: 'cover', marginBottom: '15px' }} />
 
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '29px' }}>
 
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                {/* <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
 
                                     <h5 style={{ color: '#000000', fontSize: '24px', lineHeight: '24px', fontWeight: '600' }}>{`${Number(item?.price) + '$'}`}</h5>
 
                                     <span style={{ color: '#000000', fontSize: '16px', lineHeight: '21px', fontWeight: '400' }}>{item?.titles[language]}</span>
 
-                                </div>
+                                </div> */}
 
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
 
-                                    <span style={{ color: '#B1B1B1', fontSize: '16px', lineHeight: '21px', fontWeight: '600' }}>{item?.weight}</span>
+                                    {/* <span style={{ color: '#B1B1B1', fontSize: '16px', lineHeight: '21px', fontWeight: '600' }}>{item?.weight}</span>
 
                                     <p style={{ color: '#B1B1B1', fontSize: '16px', lineHeight: '21px', fontWeight: '400' }}>{String(item.description?.[language])}</p>
 
-                                    <p style={{ color: '#B1B1B1', fontSize: '16px', lineHeight: '21px', fontWeight: '400' }}>{item?.composition}</p>
+                                    <p style={{ color: '#B1B1B1', fontSize: '16px', lineHeight: '21px', fontWeight: '400' }}>{item?.composition}</p> */}
 
                                     <div style={{ display: 'flex', gap: '8px' }}>
 
