@@ -9,6 +9,16 @@ interface AddFormProps {
 const AddForm: React.FC<AddFormProps> = ({ children }) => {
 
     const [isOpenForm, setIsOpenForm] = useState(false)
+    const [file, setFile] = useState<File | null>(null);
+    const [image, setImage] = useState<string | null>(null);
+    const [message, setMessage] = useState("");
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            setFile(event.target.files[0]);
+            setImage(URL.createObjectURL(event.target.files[0]))
+        }
+    };
 
     async function onSubmit(e: any) {
         e.preventDefault()
@@ -45,7 +55,63 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
         const data = await res.json()
 
         console.log(data);
+
+        if (!file) {
+            setMessage("Please select a file.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        try {
+            const response = await fetch("/api/menu/upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                setMessage(errorData.message || "Image upload failed");
+                return;
+            }
+
+            const data = await response.json();
+            setMessage(data.message);
+        } catch (error) {
+            setMessage("Something went wrong: " + error);
+        }
     }
+
+    /* const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+
+        if (!file) {
+            setMessage("Plase select a file.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        try {
+            const response = await fetch("/api/menu/upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            if(!response.ok) {
+                const errorData = await response.json();
+                setMessage(errorData.message || "Image upload failed");
+                return;
+            }
+
+            const data = await response.json();
+            setMessage(data.message);
+        } catch (error) {
+            setMessage("Something went wrong: " + error);
+        }
+    }; */
 
     return (
         <>
@@ -61,7 +127,7 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
 
                     <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
 
-                        <div style={{ width: '750px', height: '550px', backgroundColor: '#FF7020', borderRadius: '12px', padding: '20px' }}>
+                        <div style={{ width: '750px', height: 'fit-content', backgroundColor: '#FF7020', borderRadius: '12px', padding: '20px' }}>
 
                             <h1 style={{ color: '#ffffff', fontSize: '32px', fontWeight: '600' }}>Product information</h1>
 
@@ -69,11 +135,23 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
 
                             <form action="" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }} onSubmit={onSubmit}>
 
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                {/* <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
 
                                     <label htmlFor="img_url" style={{ color: '#ffffff', fontSize: '18px', fontWeight: '500' }}>Image URL</label>
 
                                     <input type="text" name="images" id="img_url" placeholder="https://example.com/images" style={{ width: '350px', height: '20px', borderRadius: '6px', padding: '5px', outline: 'none', border: 'none' }} required />
+
+                                </div> */}
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+
+                                    <label htmlFor="img_url" style={{ color: '#ffffff', fontSize: '18px', fontWeight: '500' }}>Upload Image</label>
+
+                                    <input type="file" accept="image/*" name="images" id="img_url" style={{ width: '350px', height: '20px', padding: '5px' }} required onChange={handleFileChange} />
+
+                                    {message && <p>{message}</p>}
+
+                                    {image && <img src={image} alt="" style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '12px' }} />}
 
                                 </div>
 
@@ -163,6 +241,20 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
 
                 </div>
             )}
+
+            {/* <form action="" onSubmit={handleSubmit}>
+
+                <label htmlFor="img_url" style={{ color: '#ffffff', fontSize: '18px', fontWeight: '500' }}>Upload Image</label>
+
+                <input type="file" accept="image/*" name="images" id="img_url" style={{ width: '350px', height: '20px', padding: '5px' }} required onChange={handleFileChange} />
+
+                {message && <p>{message}</p>}
+
+                {image && <img src={image} alt="" style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '12px' }} />}
+
+                <button type="submit">Submit image</button>
+
+            </form> */}
 
         </>
     )
