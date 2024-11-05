@@ -4,6 +4,7 @@ import Food from "./Food"
 import { Menu } from "@/models/menu"
 import Modal from "./Modal"
 import Image from "next/image"
+import { useParams } from "next/navigation"
 
 // const menuItem: Menu = {
 //     _id: '1',
@@ -24,6 +25,18 @@ const FoodItem = () => {
             .then(data => setMeal(data.data))
             .catch(error => console.error('Ошибка:', error));
     }, []) */
+
+    /*  */
+
+    const [selectedData, setSelectedData] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleMarkerClick = (item: any) => {
+        setSelectedData(item)
+        setIsModalOpen(true)
+    }
+
+    /*  */
 
     const [language, setLanguage] = useState('en')
     const languages = ['en', 'ru', 'uz']
@@ -65,7 +78,7 @@ const FoodItem = () => {
 
                     {/* <Image src={`${item?.images}`} alt="" width="276" height="220" className="rounded-[12px]" /> */}
 
-                    <img src={`${item?.images}`} alt="" className="w-[276px] h-[220px] rounded-[12px] object-cover" />
+                    <img src={`uploads/${item?.images}`} alt="" className="w-[276px] h-[220px] rounded-[12px] object-cover" />
 
                     <div className="flex flex-col gap-[29px] mt-4">
 
@@ -83,15 +96,23 @@ const FoodItem = () => {
 
                             <span className="text-[#B1B1B1] text-[16px] leading-[21px] font-semibold">{item?.weight}</span>
 
-                            <p className="text-[#B1B1B1] text-[16px] leading-[21px] font-normal">{String(item.description?.[language])}</p>
+                            {/* <p className="text-[#B1B1B1] text-[16px] leading-[21px] font-normal">{String(item.description?.[language])}</p>
 
-                            <p className="text-[#B1B1B1] text-[16px] leading-[21px] font-normal">{item?.composition}</p>
+                            <p className="text-[#B1B1B1] text-[16px] leading-[21px] font-normal">{item?.composition}</p> */}
 
-                            <Modal>
+                            {/* <Modal>
 
                                 <button className="w-full h-[40px] bg-[#F2F2F3] rounded-[12px] text-[#000000] text-[16px] leading-[16px] font-normal">Добавить</button>
 
-                            </Modal>
+                            </Modal> */}
+
+                            {isModalOpen && (
+                                <Modal data={selectedData} onClose={() => {
+                                    setIsModalOpen(false)
+                                }} />
+                            )}
+
+                            <button className="w-full h-[40px] bg-[#F2F2F3] rounded-[12px] text-[#000000] text-[16px] leading-[16px] font-normal" onClick={() => handleMarkerClick(item)}>Добавить</button>
 
                         </div>
 

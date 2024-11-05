@@ -9,7 +9,9 @@ const page: React.FC<pageProps> = () => {
     return (
         <>
 
-            <div>
+            <div style={{ display: 'flex' }}>
+
+                <Sidebar />
 
                 <div style={{ position: 'absolute', right: '15px' }}>
 

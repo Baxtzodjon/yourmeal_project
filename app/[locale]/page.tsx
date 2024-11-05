@@ -173,7 +173,7 @@ export default function Home() {
 
                         </div>
 
-                        <Counter />
+                        <Counter onCountChange />
 
                       </div>
 
@@ -222,7 +222,7 @@ export default function Home() {
 
               <div className="flex flex-col gap-[30px]">
 
-                <div className="grid grid-cols-3 gap-[30px]">
+                {/* <div className="grid grid-cols-3 gap-[30px]">
 
                   {card_burgers.map((item, index) => (
                     <div className="w-[280px] h-[400px] bg-[#FFFFFF] rounded-[18px] p-3" key={index}>
@@ -256,7 +256,7 @@ export default function Home() {
                     </div>
                   ))}
 
-                </div>
+                </div> */}
 
                 <div className="grid grid-cols-3 gap-[30px]">
 

@@ -1,7 +1,8 @@
 import Sidebar from "@/components/Sidebar";
 import React from "react";
+import Table from "./menu/Table";
 
-interface pageProps {}
+interface pageProps { }
 
 const page: React.FC<pageProps> = () => {
 
@@ -10,6 +11,7 @@ const page: React.FC<pageProps> = () => {
 
             <Sidebar />
 
+            <Table />
         </>
     )
 }

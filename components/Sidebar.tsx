@@ -9,7 +9,7 @@ const Sidebar = () => {
 
                 <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
 
-                    <Link href="/admin/dashboard/menu" style={{ textDecoration: 'none', marginBottom: '30px' }}>
+                    <Link href="/admin/dashboard" style={{ textDecoration: 'none', marginBottom: '30px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
 
                             <img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-24.png" alt="" style={{ borderRadius: '100%', backgroundColor: 'white', padding: '5px' }} />

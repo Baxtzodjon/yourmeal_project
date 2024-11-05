@@ -1,4 +1,5 @@
 import Sidebar from "@/components/Sidebar"
+import AddForm from "./menu/AddForm"
 
 export const metadata = {
     title: 'Next js',
@@ -16,7 +17,7 @@ export default function RootLayout({
 
                 <div style={{ display: 'flex', gap: '30px' }}>
 
-                    <Sidebar />
+                    {/* <Sidebar /> */}
 
                     {children}
 

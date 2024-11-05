@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 interface AddFormProps {
     children: React.ReactNode,
@@ -12,6 +12,14 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
     const [file, setFile] = useState<File | null>(null);
     const [image, setImage] = useState<string | null>(null);
     const [message, setMessage] = useState("");
+    const [text, setText] = useState('Submit');
+
+    const handleCheck = () => {
+        setText('Loading...');
+        setTimeout(() => {
+            setText('Submit');
+        }, 3000);
+    };
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
@@ -39,36 +47,38 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
             en: menu.description
         };
 
-        menu.images = [menu.images]
+        // menu.images = [menu.images]
         menu.price = Number(menu.price)
 
-        const res = await fetch('http://localhost:3000/api/menu', {
-            method: "POST",
-            body: JSON.stringify(menu),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-
-        console.log(res);
-
-        const data = await res.json()
-
-        console.log(data);
-
-        if (!file) {
-            setMessage("Please select a file.");
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("image", file);
-
         try {
-            const response = await fetch("/api/menu/upload", {
+            if (!file) {
+                setMessage("Please select a file.");
+                return;
+            }
+    
+            const formData = new FormData();
+            formData.append("image", file);
+    
+            const res = await fetch("/api/menu/upload", {
                 method: "POST",
                 body: formData,
             });
+    
+            console.log(res);
+    
+            const data = await res.json()
+    
+            menu.images = data.data
+    
+            console.log(data);
+
+            const response = await fetch('http://localhost:3000/api/menu', {
+                method: "POST",
+                body: JSON.stringify(menu),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
 
             if (!response.ok) {
                 const errorData = await response.json();
@@ -76,42 +86,12 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
                 return;
             }
 
-            const data = await response.json();
-            setMessage(data.message);
+            const menu_data = await response.json();
+            setMessage(menu_data.message);
         } catch (error) {
             setMessage("Something went wrong: " + error);
         }
     }
-
-    /* const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-
-        if (!file) {
-            setMessage("Plase select a file.");
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("image", file);
-
-        try {
-            const response = await fetch("/api/menu/upload", {
-                method: "POST",
-                body: formData,
-            });
-
-            if(!response.ok) {
-                const errorData = await response.json();
-                setMessage(errorData.message || "Image upload failed");
-                return;
-            }
-
-            const data = await response.json();
-            setMessage(data.message);
-        } catch (error) {
-            setMessage("Something went wrong: " + error);
-        }
-    }; */
 
     return (
         <>
@@ -149,7 +129,7 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
 
                                     <input type="file" accept="image/*" name="images" id="img_url" style={{ width: '350px', height: '20px', padding: '5px' }} required onChange={handleFileChange} />
 
-                                    {message && <p>{message}</p>}
+                                    {/* {message && <p>{message}</p>} */}
 
                                     {image && <img src={image} alt="" style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '12px' }} />}
 
@@ -176,8 +156,6 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
                                     <label htmlFor="price" style={{ color: '#ffffff', fontSize: '18px', fontWeight: '500' }}>Price</label>
 
                                     <input type="number" name="price" id="price" placeholder="$0.00" style={{ width: '350px', height: '20px', borderRadius: '6px', padding: '5px', outline: 'none', border: 'none' }} required />
-
-                                    {/* <input type="text" name="price" id="price" placeholder="$0.00" style={{ width: '350px', height: '20px', borderRadius: '6px', padding: '5px', outline: 'none', border: 'none' }} /> */}
 
                                 </div>
 
@@ -227,7 +205,7 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
 
                                     <div>
 
-                                        <button type="submit" style={{ width: '360px', height: '40px', backgroundColor: '#FFAB08', borderRadius: '6px', padding: '5px', border: 'none', color: '#ffffff', fontSize: '16px', fontWeight: '400', cursor: 'pointer' }}>Submit</button>
+                                        <button type="submit" onClick={handleCheck} style={{ width: '360px', height: '40px', backgroundColor: '#FFAB08', borderRadius: '6px', padding: '5px', border: 'none', color: '#ffffff', fontSize: '16px', fontWeight: '400', cursor: 'pointer' }}>{text}</button>
 
                                     </div>
 
@@ -241,20 +219,6 @@ const AddForm: React.FC<AddFormProps> = ({ children }) => {
 
                 </div>
             )}
-
-            {/* <form action="" onSubmit={handleSubmit}>
-
-                <label htmlFor="img_url" style={{ color: '#ffffff', fontSize: '18px', fontWeight: '500' }}>Upload Image</label>
-
-                <input type="file" accept="image/*" name="images" id="img_url" style={{ width: '350px', height: '20px', padding: '5px' }} required onChange={handleFileChange} />
-
-                {message && <p>{message}</p>}
-
-                {image && <img src={image} alt="" style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '12px' }} />}
-
-                <button type="submit">Submit image</button>
-
-            </form> */}
 
         </>
     )

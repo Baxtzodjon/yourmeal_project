@@ -30,3 +30,13 @@ body {
     flex-direction: column;
     /* w-full h-[466px] bg-[#FFAB08] flex flex-col */
 }
+
+.modal_box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    /* fixed top-0 left-0 w-full h-full */
+}
